@@ -15,12 +15,25 @@ VALUES ("Sales Lead", 1, 100000),
        ("Lawyer",4, 190000);
 
 
-INSERT INTO role (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("John", "Doe", 1, null),
        ("Mike", "Chan", 2, 1),
        ("Ashley", "Rodriquez", 3, null),
        ("Kevin", "Tupik", 4, 3);
 
-       
 
+
+
+select emp.id as Id,
+concat(emp.first_name,' ',emp.last_name) as Emp_Name,
+concat(manager.first_name,' ',manager.last_name) as Manager,
+r.title as Role_Title,
+r.salary as Salary,
+d.name as Dept_Name
+from employee emp
+LEFT OUTER JOIN employee manager ON manager.id = emp.manager_id
+inner join role r on r.id = emp.role_id inner join department d on d.id = r.department_id;
+
+
+select 
 
