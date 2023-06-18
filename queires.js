@@ -146,7 +146,6 @@ exports.addDept = async function (name) {
   }
 
   await conn.end();
-  choices.promptChoicesAction();
 };
 
 //Role Added

@@ -62,6 +62,7 @@ exports.promptChoicesAction = async function mainPromptfunc() {
         // execute function viewDept if user selection is "View departments"
       } else if (answer.action == "View departments") {
         queries.viewDept().then(function (response) {
+          departments = response;
           console.table(response);
           mainPromptfunc();
         });
@@ -69,6 +70,7 @@ exports.promptChoicesAction = async function mainPromptfunc() {
         // execute function viewRoles if user selection is "View roles"
       } else if (answer.action == "View roles") {
         queries.viewRoles().then(function (response) {
+          roles = response;
           console.table(response);
           mainPromptfunc();
         });
@@ -146,7 +148,9 @@ exports.promptChoicesAction = async function mainPromptfunc() {
       } else if (answer.action == "Add department") {
         inquirer.prompt(addDepartmentQues).then(function (ans) {
           console.log("Dept name ", ans);
-          queries.addDept(ans.DeplartmentQues);
+          queries.addDept(ans.DeplartmentQues).then(function () {
+            mainPromptfunc();
+          });
         });
 
         // execute function addRole if user selection is "Add roles"
